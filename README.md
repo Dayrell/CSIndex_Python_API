@@ -1,5 +1,15 @@
 # CSIndex Python API
 
+# Execução
+Para utilizar essa API, tenha o Python3 e pip3 instalados. Após isso, execute os seguintes comandos no terminal.
+
+1) `pip3 install -r requirements.txt`
+
+2) `FLASK_APP=csindex.py flask run`
+
+Recomenda-se o uso do [virtualenv](https://virtualenv.pypa.io/en/stable/).
+
+
 # Endpoints
 
 [<code>GET</code> api/v1/papers/\<area>/total](#total)
