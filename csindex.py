@@ -23,16 +23,6 @@ def cria_csv (csv_list):
 def hello():
     return "Hello World!"
 
-@app.route('/api/v1/papers/<professor>')
-def papers(professor):
-    # Todos os papers de um professor (dado o seu nome)
-
-    csv_list = publicacoes_de_professor(professor)
-    
-    output = cria_csv(csv_list)
-
-    return output
-
 @app.route('/api/v1/papers/<area>/total')
 # Numero de publicacoes no conjunto de conferencias de uma area
 def total_papers(area):
@@ -47,10 +37,11 @@ def list_papers_from_area (area):
     ano = request.args.get('ano')
     departamento = request.args.get('departamento')
     conferencia = request.args.get('conferencia')
-    
+    print(ano)
+
     if (ano != None):
         # Todos os papers de uma área em um determinado ano
-        csv_list = publicacoes_determinada_area_por_ano('papers', area, ano)
+        csv_list = publicacoes_determinada_area_por_ano('papers', area, int(ano))
     elif (departamento != None):
         # Todos os papers de um departamento em uma área
         csv_list = publicacoes_determinada_area_por_departamento('papers', area, departamento)
@@ -76,6 +67,17 @@ def scores(area):
         # Scores de todos os departamentos em uma área
         csv_list = todos_scores(area)
     
+    output = cria_csv(csv_list)
+
+    return output
+
+@app.route('/api/v1/professores/')
+def professores ():
+    professor = request.args.get('professor')
+
+    # Todos os papers de um professor (dado o seu nome)
+    csv_list = publicacoes_de_professor(professor)
+
     output = cria_csv(csv_list)
 
     return output

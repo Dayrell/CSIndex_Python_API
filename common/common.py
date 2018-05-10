@@ -52,6 +52,7 @@ def publicacoes_determinada_area_por_ano (file_type, area, ano):
 
     for row in csv_list:
         if (row[0] == ano):
+            print(ano)
             publicacoes_list.append(row)
 
     return publicacoes_list
