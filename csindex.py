@@ -1,9 +1,11 @@
 from flask import Flask
 from flask import make_response, request
+from flask import render_template
 import io
 import csv
 
 from common.common import *
+
 
 app = Flask(__name__)
 
@@ -19,9 +21,9 @@ def cria_csv (csv_list):
 
     return output
 
-@app.route("/api/v1/")
+@app.route("/")
 def hello():
-    return "Hello World!"
+    return render_template('index.html')
 
 @app.route('/api/v1/papers/<area>/total')
 # Numero de publicacoes no conjunto de conferencias de uma area
