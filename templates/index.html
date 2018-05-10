@@ -1,5 +1,15 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
+function pegaProfessor() {
+    $.get('http://127.0.0.1:5000/api/v1/professores/?professor=' + document.getElementById("nomeProfessor").value, function(data5) {
+    $("#data5").text(data5);
+});
+}
+function pegaPapersDepartamento() {
+    $.get('http://127.0.0.1:5000/api/v1/papers/ai?departamento=' + document.getElementById("nomeDepartamentoArea").value, function(data7) {
+    $("#data7").text(data7);
+});
+}
 $(document).ready(function() {
     $.get('http://127.0.0.1:5000/api/v1/papers/ai/total', function(data) {
         $("#data1").text(data);
@@ -7,12 +17,15 @@ $(document).ready(function() {
     $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Marco-Tulio', function(data2) {
         $("#data2").text(data2);
     });
-    $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Wagner-Meira', function(data3) {
-        $("#data3").text(data3);
+    $.get('http://127.0.0.1:5000/api/v1/papers/ai?departamento=UFMG', function(data6) {
+        $("#data6").text(data6);
     });
-    $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Jussara-Almeida', function(data4) {
-        $("#data4").text(data4);
-    });
+    // $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Wagner-Meira', function(data3) {
+    //     $("#data3").text(data3);
+    // });
+    // $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Jussara-Almeida', function(data4) {
+    //     $("#data4").text(data4);
+    // });
 });
 
 
@@ -96,15 +109,31 @@ $(document).ready(function() {
       <pre id="data1"></pre>
       <hr>
 
+
+
+
       <h3>Todos os papers de um professor (dado o seu nome)</h3>
       <h4>http://127.0.0.1:5000/api/v1/professores/?professor=Marco-Tulio</h4>
       <pre id="data2"></pre>
 
-      <h4>http://127.0.0.1:5000/api/v1/professores/?professor=Wagner-Meira</h4>
-      <pre id="data3"></pre>
+      <h4>Digite o nome de um professor no formado Nome-Sobrenone</h4>
+      <input name="nomeprofessor" id="nomeProfessor" type="text" />
+      <input name="buttonExecute" onclick="pegaProfessor()" type="button" value="Execute" />
+      <pre id="data5"></pre>
+      <hr>
 
-      <h4>http://127.0.0.1:5000/api/v1/professores/?professor=Jussara-Almeida</h4>
-      <pre id="data4"></pre>
+
+
+
+      <h3>Todos os papers de um departamento em uma área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/professores/?departamento=UFMG</h4>
+      <pre id="data6"></pre>
+
+        <h4>Digite o nome de um departamento</h4>
+      <input name="nomeDepartamentoArea" id="nomeDepartamentoArea" type="text" />
+      <input name="buttonExecute" onclick="pegaPapersDepartamento()" type="button" value="Execute" />
+      <pre id="data7"></pre>
+
       <hr>
     </div>
     <div class="col-sm-2 sidenav">
