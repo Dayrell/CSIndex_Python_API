@@ -114,7 +114,7 @@ Todos os papers de um professor (dado o seu nome)
 2013,JCDL,Aggregating productivity indices for ranking researchers across multiple areas.,Harlley Lima; Thiago H. P. Silva; Mirella M. Moro; Rodrygo L. T. Santos; Wagner Meira Jr.; Alberto H. F. Laender,http://doi.acm.org/10.1145/2467696.2467715,null
 
 ```
-## <a name="professor"></a>Professores por área
+## <a name="professor-area"></a>Professores por área
 <code>GET api/v1/professores/\<area>/</code>
 
 Número de professores por área e departamento
