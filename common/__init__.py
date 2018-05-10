@@ -1,0 +1,1 @@
+__all__ = ['num_publicacoes_conferencia', 'num_publicacoes_determinada_conferencia', 'publicacoes_determinada_area', 'publicacoes_determinada_area_por_ano', 'publicacoes_determinada_area_por_departamento', 'publicacoes_de_professor', 'todos_scores', 'score_departamento', 'num_professores_area', 'num_professores_area_departamento']

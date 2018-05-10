@@ -3,7 +3,7 @@ from flask import make_response, request
 import io
 import csv
 
-from common.common import num_publicacoes_conferencia, num_publicacoes_determinada_conferencia, publicacoes_determinada_area, publicacoes_determinada_area_por_ano, publicacoes_determinada_area_por_departamento, publicacoes_de_professor, todos_scores, score_departamento, num_professores_area, num_professores_area_departamento
+from common.common import *
 
 app = Flask(__name__)
 
@@ -86,7 +86,7 @@ def scores(area):
 @app.route('/professores/<area>')
 def professores_area (area):
     departamento = request.args.get('departamento')
-    print(departamento)
+
     if (departamento != None):
         # Número de professores de um determinado departamento que publicam em uma área
         csv_list = num_professores_area_departamento(area, departamento)

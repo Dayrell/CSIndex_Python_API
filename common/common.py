@@ -32,7 +32,6 @@ def num_publicacoes_determinada_conferencia (file_type, area, conference):
     numero_papers = 0
     
     for row in csv_list:
-        print(row)
         if (row[1] == conference):
             numero_papers += 1
     
