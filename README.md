@@ -12,15 +12,11 @@ Recomenda-se o uso do [virtualenv](https://virtualenv.pypa.io/en/stable/).
 
 # Endpoints
 
-[<code>GET</code> api/v1/papers/\<area>/total](#total)
-
-[<code>GET</code> api/v1/papers/\<area>](#papers-area)
-
-[<code>GET</code> api/v1/scores/\<area>](#scores-area)
-
-[<code>GET</code> api/v1/professores/](#professor)
-
-[<code>GET</code> api/v1/professores/\<area>](#professor-area)
+* [<code>GET</code> api/v1/papers/\<area>/total](#total)
+* [<code>GET</code> api/v1/papers/\<area>](#papers-area)
+* [<code>GET</code> api/v1/scores/\<area>](#scores-area)
+* [<code>GET</code> api/v1/professores/](#professor)
+* [<code>GET</code> api/v1/professores/\<area>](#professor-area)
 
 ## <a name="total"></a>Total de artigos da área
 <code>GET api/v1/papers/\<area>/total</code>
