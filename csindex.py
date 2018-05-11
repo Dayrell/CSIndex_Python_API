@@ -13,7 +13,7 @@ def cria_csv (csv_list):
     si = io.StringIO()
 
     cw = csv.writer(si)
-    cw.writerows(csv_list)
+    cw.writerows([csv_list])
 
     output = make_response(si.getvalue())
     output.headers["Content-Disposition"] = "attachment; filename=total_papers.csv"
@@ -29,7 +29,8 @@ def hello():
 # Numero de publicacoes no conjunto de conferencias de uma area
 def total_papers(area):
     csv_list = num_publicacoes_conferencia('papers', area)
-    
+    # print ("csv_list: ", csv_list)
+
     output = cria_csv(csv_list)
 
     return output
@@ -68,7 +69,7 @@ def scores(area):
     else:
         # Scores de todos os departamentos em uma área
         csv_list = todos_scores(area)
-    
+
     output = cria_csv(csv_list)
 
     return output
@@ -94,7 +95,7 @@ def professores_area (area):
     else:
         # Número de professores que publicam em uma determinada área (organizados por departamentos)
         csv_list = num_professores_area(area)
-    
+
     output = cria_csv(csv_list)
 
     return output
