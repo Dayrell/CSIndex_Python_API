@@ -9,7 +9,7 @@ def num_publicacoes_conferencia (file_type, area):
     for _ in csv_list:
         numero_papers += 1
     
-    return [str(numero_papers)]
+    return [[str(numero_papers)]]
 
 def publicacoes_determinada_area_por_ano (file_type, area, ano):
     csv_list = get_csv (file_type, area)

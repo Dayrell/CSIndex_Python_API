@@ -6,11 +6,15 @@ function pegaProfessor() {
 });
 }
 function pegaPapersDepartamento() {
-    $.get('http://127.0.0.1:5000/api/v1/papers/ai?departamento=' + document.getElementById("nomeDepartamentoArea").value, function(data7) {
+    $.get('http://127.0.0.1:5000/api/v1/papers/' + document.getElementById("nomeArea2").value + '?departamento=' + document.getElementById("nomeDepartamentoArea").value, function(data7) {
     $("#data7").text(data7);
 });
 }
-
+function pegaArea() {
+    $.get('http://127.0.0.1:5000/api/v1/papers/' + document.getElementById("nomeArea").value + '/total', function(data8) {
+    $("#data8").text(data8);
+});
+}
 $(document).ready(function() {
     $.get('http://127.0.0.1:5000/api/v1/papers/ai/total', function(data) {
         $("#data1").text(data);
@@ -44,36 +48,36 @@ $(document).ready(function() {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
-    
+
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
-    
+
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
       height: 100%;
     }
-    
+
     /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
       color: white;
       padding: 15px;
     }
-    
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
         padding: 15px;
       }
-      .row.content {height:auto;} 
+      .row.content {height:auto;}
     }
   </style>
 </head>
@@ -85,7 +89,7 @@ $(document).ready(function() {
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
+        <span class="icon-bar"></span>
       </button>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -97,17 +101,21 @@ $(document).ready(function() {
     </div>
   </div>
 </nav>
-  
-<div class="container-fluid text-center" style="background-color: #f1f1f1;">    
+
+<div class="container-fluid text-center" style="background-color: #f1f1f1;">
   <div class="row content">
     <div class="col-sm-2 sidenav">
     </div>
-    <div class="col-sm-8 text-left" style="background-color: white"> 
+    <div class="col-sm-8 text-left" style="background-color: white">
       <h3>Número de publicações em uma determinada conferência de uma área</h3>
       <h4>http://127.0.0.1:5000/api/v1/papers/ai/total</h4>
       <pre id="data1"></pre>
       <hr>
-
+      <h4>Digite o nome de uma area</h4>
+      <input name="nomeArea" id="nomeArea" type="text" />
+      <input name="buttonExecute" onclick="pegaArea()" type="button" value="Execute" />
+      <pre id="data8"></pre>
+      <hr>
 
 
 
@@ -115,7 +123,7 @@ $(document).ready(function() {
       <h4>http://127.0.0.1:5000/api/v1/professores/?professor=Marco-Tulio</h4>
       <pre id="data2"></pre>
 
-      <h4>Digite o nome de um professor no formado Nome-Sobrenone</h4>
+      <h4>Digite o nome de um professor no formato Nome-Sobrenone</h4>
       <input name="nomeprofessor" id="nomeProfessor" type="text" />
       <input name="buttonExecute" onclick="pegaProfessor()" type="button" value="Execute" />
       <pre id="data5"></pre>
@@ -128,7 +136,9 @@ $(document).ready(function() {
       <h4>http://127.0.0.1:5000/api/v1/papers/ai?departamento=UFMG</h4>
       <pre id="data6"></pre>
 
-        <h4>Digite o nome de um departamento</h4>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea2" id="nomeArea2" type="text" />
+      <h4>Digite o nome de um departamento</h4>
       <input name="nomeDepartamentoArea" id="nomeDepartamentoArea" type="text" />
       <input name="buttonExecute" onclick="pegaPapersDepartamento()" type="button" value="Execute" />
       <pre id="data7"></pre>
