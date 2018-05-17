@@ -1,4 +1,4 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 function pegaProfessor() {
     $.get('http://127.0.0.1:5000/api/v1/professores/?professor=' + document.getElementById("nomeProfessor").value, function(data5) {
@@ -10,6 +10,7 @@ function pegaPapersDepartamento() {
     $("#data7").text(data7);
 });
 }
+
 $(document).ready(function() {
     $.get('http://127.0.0.1:5000/api/v1/papers/ai/total', function(data) {
         $("#data1").text(data);

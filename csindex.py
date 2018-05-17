@@ -4,7 +4,9 @@ from flask import render_template
 import io
 import csv
 
-from common.common import *
+from src.papers import *
+from src.scores import *
+from src.professores import *
 
 
 app = Flask(__name__)
@@ -13,7 +15,7 @@ def cria_csv (csv_list):
     si = io.StringIO()
 
     cw = csv.writer(si)
-    cw.writerows([csv_list])
+    cw.writerows(csv_list)
 
     output = make_response(si.getvalue())
     output.headers["Content-Disposition"] = "attachment; filename=total_papers.csv"
