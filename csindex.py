@@ -42,7 +42,7 @@ def list_papers_from_area (area):
     ano = request.args.get('ano')
     departamento = request.args.get('departamento')
     conferencia = request.args.get('conferencia')
-    print(ano)
+    # print(ano)
 
     if (ano != None):
         # Todos os papers de uma área em um determinado ano
@@ -56,7 +56,7 @@ def list_papers_from_area (area):
     else:
         # Todos os papers de uma área (ano, título, deptos e autores)
         csv_list = publicacoes_determinada_area('papers', area)
-
+    # print (csv_list)
     output = cria_csv(csv_list)
 
     return output

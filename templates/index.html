@@ -1,17 +1,41 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 function pegaProfessor() {
-    $.get('http://127.0.0.1:5000/api/v1/professores/?professor=' + document.getElementById("nomeProfessor").value, function(data5) {
+    // Todos os papers de um professor (dado o seu nome)
+    $.get('http://127.0.0.1:5000/api/v1/professores/?professor='
+    + document.getElementById("nomeProfessor").value, function(data5) {
     $("#data5").text(data5);
 });
 }
-function pegaPapersDepartamento() {
-    $.get('http://127.0.0.1:5000/api/v1/papers/' + document.getElementById("nomeArea2").value + '?departamento=' + document.getElementById("nomeDepartamentoArea").value, function(data7) {
-    $("#data7").text(data7);
-});
+function pegaPapers(campo, output) {
+    //Todos os papers de um departamento em uma área
+    var urlBase = 'http://127.0.0.1:5000/api/v1/papers/';
+    var urlCompl = '';
+    console.log (document.getElementById("nomeArea2").value);
+    if (campo == 'departamento'){
+      urlCompl = document.getElementById("nomeArea2").value + '?departamento='
+      + document.getElementById("nomeDepartamentoArea").value;
+      console.log (urlCompl);
+    }
+    else if (campo == 'ano'){
+      urlCompl = document.getElementById("nomeArea2").value + '?ano='
+      + document.getElementById("anoPaper").value;
+      console.log (urlCompl);
+    }
+    else if (campo == 'conferencia'){
+      urlCompl = document.getElementById("nomeArea2").value + '?conferencia='
+      + document.getElementById("nomeConferencia").value;
+      console.log (urlCompl);
+    }
+    $.get(urlBase + urlCompl, function(data7) {
+      // console.log(data7);
+      $(output).text(data7);
+    });
 }
 function pegaArea() {
-    $.get('http://127.0.0.1:5000/api/v1/papers/' + document.getElementById("nomeArea").value + '/total', function(data8) {
+    // Numero de publicacoes no conjunto de conferencias de uma area
+    $.get('http://127.0.0.1:5000/api/v1/papers/'
+    + document.getElementById("nomeArea").value + '/total', function(data8) {
     $("#data8").text(data8);
 });
 }
@@ -140,8 +164,16 @@ $(document).ready(function() {
       <input name="nomeArea2" id="nomeArea2" type="text" />
       <h4>Digite o nome de um departamento</h4>
       <input name="nomeDepartamentoArea" id="nomeDepartamentoArea" type="text" />
-      <input name="buttonExecute" onclick="pegaPapersDepartamento()" type="button" value="Execute" />
+      <input name="buttonExecute" onclick="pegaPapers('departamento', '#data7')" type="button" value="Execute" />
       <pre id="data7"></pre>
+      <h4>Digite um ano</h4>
+      <input name="anoPaper" id="anoPaper" type="text" />
+      <input name="buttonExecute" onclick="pegaPapers('ano','#data9')" type="button" value="Execute" />
+      <pre id="data9"></pre>
+      <h4>Digite o nome de uma conferência</h4>
+      <input name="nomeConferencia" id="nomeConferencia" type="text" />
+      <input name="buttonExecute" onclick="pegaPapers('conferencia','#data10')" type="button" value="Execute" />
+      <pre id="data10"></pre>
 
       <hr>
     </div>
