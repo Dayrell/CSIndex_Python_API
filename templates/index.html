@@ -1,4 +1,5 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="/static/templates/script.js"></script> -->
 <script>
 function pegaProfessor() {
     // Todos os papers de um professor (dado o seu nome)
@@ -7,25 +8,62 @@ function pegaProfessor() {
     $("#data5").text(data5);
 });
 }
+function pegaProfessorArea(campo, output) {
+    var urlBase = 'http://127.0.0.1:5000/api/v1/professores/';
+    var urlCompl = '';
+    if (campo == 'departamento'){
+      urlCompl = document.getElementById("nomeArea8").value + '?departamento='
+      + document.getElementById("nomeDepartamentoArea3").value;
+      console.log (urlCompl);
+    }
+    else{
+      urlCompl = document.getElementById("nomeArea9").value;
+    }
+    $.get(urlBase + urlCompl, function(data7) {
+      // console.log(data7);
+      $(output).text(data7);
+    });
+}
+function pegaScore(campo, output) {
+    var urlBase = 'http://127.0.0.1:5000/api/v1/scores/';
+    var urlCompl = '';
+    if (campo == 'departamento'){
+      urlCompl = document.getElementById("nomeArea6").value + '?departamento='
+      + document.getElementById("nomeDepartamentoArea2").value;
+      console.log (urlCompl);
+    }
+    else{
+      urlCompl = document.getElementById("nomeArea7").value;
+    }
+    $.get(urlBase + urlCompl, function(data7) {
+      // console.log(data7);
+      $(output).text(data7);
+    });
+}
 function pegaPapers(campo, output) {
-    //Todos os papers de um departamento em uma área
     var urlBase = 'http://127.0.0.1:5000/api/v1/papers/';
     var urlCompl = '';
     console.log (document.getElementById("nomeArea2").value);
+    //Todos os papers de um departamento em uma área
     if (campo == 'departamento'){
       urlCompl = document.getElementById("nomeArea2").value + '?departamento='
       + document.getElementById("nomeDepartamentoArea").value;
       console.log (urlCompl);
     }
+    //Todos os papers de uma area em um determinado ano
     else if (campo == 'ano'){
-      urlCompl = document.getElementById("nomeArea2").value + '?ano='
+      urlCompl = document.getElementById("nomeArea3").value + '?ano='
       + document.getElementById("anoPaper").value;
       console.log (urlCompl);
     }
+    //Todos os papers de uma area em uma determinada conferencia
     else if (campo == 'conferencia'){
-      urlCompl = document.getElementById("nomeArea2").value + '?conferencia='
+      urlCompl = document.getElementById("nomeArea4").value + '?conferencia='
       + document.getElementById("nomeConferencia").value;
       console.log (urlCompl);
+    }
+    else{
+      urlCompl = document.getElementById("nomeArea5").value;
     }
     $.get(urlBase + urlCompl, function(data7) {
       // console.log(data7);
@@ -46,8 +84,30 @@ $(document).ready(function() {
     $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Marco-Tulio', function(data2) {
         $("#data2").text(data2);
     });
+    // console.log('http://127.0.0.1:5000/api/v1/papers/ai?departamento=UFMG');
     $.get('http://127.0.0.1:5000/api/v1/papers/ai?departamento=UFMG', function(data6) {
         $("#data6").text(data6);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/papers/ai?ano=2016', function(data11) {
+        $("#data11").text(data11);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/papers/ai?conferencia=GECCO', function(data12) {
+        $("#data12").text(data12);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/papers/ai', function(data13) {
+        $("#data13").text(data13);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/scores/ai?departamento=UFMG', function(data15) {
+        $("#data15").text(data15);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/scores/ai', function(data17) {
+        $("#data17").text(data17);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/professores/ai?departamento=UFMG', function(data17) {
+        $("#data19").text(data17);
+    });
+    $.get('http://127.0.0.1:5000/api/v1/professores/ai', function(data21) {
+        $("#data21").text(data21);
     });
     // $.get('http://127.0.0.1:5000/api/v1/professores/?professor=Wagner-Meira', function(data3) {
     //     $("#data3").text(data3);
@@ -56,8 +116,6 @@ $(document).ready(function() {
     //     $("#data4").text(data4);
     // });
 });
-
-
 </script>
 
 
@@ -131,49 +189,105 @@ $(document).ready(function() {
     <div class="col-sm-2 sidenav">
     </div>
     <div class="col-sm-8 text-left" style="background-color: white">
+      <hr>
       <h3>Número de publicações em uma determinada conferência de uma área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/papers/ai?conferencia=GECCO</h4>
+      <pre id="data12"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea4" id="nomeArea4" type="text" />
+      <h4>Digite o nome de uma conferência</h4>
+      <input name="nomeConferencia" id="nomeConferencia" type="text" />
+      <input name="buttonExecute" onclick="pegaPapers('conferencia','#data10')" type="button" value="Execute" />
+      <pre id="data10"></pre>
+
+      <h3>Número de publicações no conjunto de conferências de uma área</h3>
       <h4>http://127.0.0.1:5000/api/v1/papers/ai/total</h4>
       <pre id="data1"></pre>
-      <hr>
       <h4>Digite o nome de uma area</h4>
       <input name="nomeArea" id="nomeArea" type="text" />
       <input name="buttonExecute" onclick="pegaArea()" type="button" value="Execute" />
       <pre id="data8"></pre>
+
       <hr>
+      <h3>Score de todos os departamentos de uma área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/scores/ai</h4>
+      <pre id="data17"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea7" id="nomeArea7" type="text" />
+      <input name="buttonExecute" onclick="pegaScore('', '#data18')" type="button" value="Execute" />
+      <pre id="data18"></pre>
 
-
-
-      <h3>Todos os papers de um professor (dado o seu nome)</h3>
-      <h4>http://127.0.0.1:5000/api/v1/professores/?professor=Marco-Tulio</h4>
-      <pre id="data2"></pre>
-
-      <h4>Digite o nome de um professor no formato Nome-Sobrenone</h4>
-      <input name="nomeprofessor" id="nomeProfessor" type="text" />
-      <input name="buttonExecute" onclick="pegaProfessor()" type="button" value="Execute" />
-      <pre id="data5"></pre>
       <hr>
+      <h3>Score de um determinado departamento de uma área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/scores/ai?departamento=UFMG</h4>
+      <pre id="data15"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea6" id="nomeArea6" type="text" />
+      <h4>Digite o nome de um departamento</h4>
+      <input name="nomeDepartamentoArea2" id="nomeDepartamentoArea2" type="text" />
+      <input name="buttonExecute" onclick="pegaScore('departamento', '#data16')" type="button" value="Execute" />
+      <pre id="data16"></pre>
 
+      <hr>
+      <h3>Número de professores que publicam em uma determinada área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/professores/ai</h4>
+      <pre id="data21"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea9" id="nomeArea9" type="text" />
+      <input name="buttonExecute" onclick="pegaProfessorArea('', '#data22')" type="button" value="Execute" />
+      <pre id="data22"></pre>
 
+      <hr>
+      <h3>Número de professores de um departamento que publicam em uma determinada área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/professores/ai?departamento=UFMG</h4>
+      <pre id="data19"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea8" id="nomeArea8" type="text" />
+      <h4>Digite o nome de um departamento</h4>
+      <input name="nomeDepartamentoArea3" id="nomeDepartamentoArea3" type="text" />
+      <input name="buttonExecute" onclick="pegaProfessorArea('departamento', '#data20')" type="button" value="Execute" />
+      <pre id="data20"></pre>
 
+      <hr>
+      <h3>Todos os papers de uma área</h3>
+      <h4>http://127.0.0.1:5000/api/v1/papers/ai</h4>
+      <pre id="data13"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea5" id="nomeArea5" type="text" />
+      <input name="buttonExecute" onclick="pegaPapers('', '#data14')" type="button" value="Execute" />
+      <pre id="data14"></pre>
 
+      <hr>
+      <h3>Todos os papers de uma área em um determinado ano</h3>
+      <h4>http://127.0.0.1:5000/api/v1/papers/ai?ano=2016</h4>
+      <pre id="data11"></pre>
+      <h4>Digite o nome de uma área</h4>
+      <input name="nomeArea3" id="nomeArea3" type="text" />
+      <h4>Digite um ano</h4>
+      <input name="anoPaper" id="anoPaper" type="text" />
+      <input name="buttonExecute" onclick="pegaPapers('ano','#data9')" type="button" value="Execute" />
+      <pre id="data9"></pre>
+
+      <hr>
       <h3>Todos os papers de um departamento em uma área</h3>
       <h4>http://127.0.0.1:5000/api/v1/papers/ai?departamento=UFMG</h4>
       <pre id="data6"></pre>
-
       <h4>Digite o nome de uma área</h4>
       <input name="nomeArea2" id="nomeArea2" type="text" />
       <h4>Digite o nome de um departamento</h4>
       <input name="nomeDepartamentoArea" id="nomeDepartamentoArea" type="text" />
       <input name="buttonExecute" onclick="pegaPapers('departamento', '#data7')" type="button" value="Execute" />
       <pre id="data7"></pre>
-      <h4>Digite um ano</h4>
-      <input name="anoPaper" id="anoPaper" type="text" />
-      <input name="buttonExecute" onclick="pegaPapers('ano','#data9')" type="button" value="Execute" />
-      <pre id="data9"></pre>
-      <h4>Digite o nome de uma conferência</h4>
-      <input name="nomeConferencia" id="nomeConferencia" type="text" />
-      <input name="buttonExecute" onclick="pegaPapers('conferencia','#data10')" type="button" value="Execute" />
-      <pre id="data10"></pre>
+
+      <hr>
+      <h3>Todos os papers de um professor (dado o seu nome)</h3>
+      <h4>http://127.0.0.1:5000/api/v1/professores/?professor=Marco-Tulio</h4>
+      <pre id="data2"></pre>
+      <h4>Digite o nome de um professor no formato Nome-Sobrenone</h4>
+      <input name="nomeprofessor" id="nomeProfessor" type="text" />
+      <input name="buttonExecute" onclick="pegaProfessor()" type="button" value="Execute" />
+      <pre id="data5"></pre>
+
 
       <hr>
     </div>

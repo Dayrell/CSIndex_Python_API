@@ -22,10 +22,13 @@ def publicacoes_determinada_area_por_ano (file_type, area, ano):
     return publicacoes_list
 
 def publicacoes_determinada_area_por_departamento (file_type, area, departamento):
+    print ("ARQUIVO:", file_type)
     csv_list = get_csv (file_type, area)
     publicacoes_list = []
-
+    print ('publicacoes_determinada_area_por_departamento')
     for row in csv_list:
+        print ("ENTROU LOOP")
+        print (row)
         if (row[3] == departamento):
             publicacoes_list.append(row)
 
@@ -39,7 +42,7 @@ def num_publicacoes_determinada_conferencia (file_type, area, conference):
     for row in csv_list:
         if (row[1] == conference):
             numero_papers += 1
-            
+
     return [[str(numero_papers)]]
 
 def publicacoes_determinada_area (file_type, area):
