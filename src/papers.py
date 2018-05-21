@@ -27,8 +27,6 @@ def publicacoes_determinada_area_por_departamento (file_type, area, departamento
     publicacoes_list = []
     print ('publicacoes_determinada_area_por_departamento')
     for row in csv_list:
-        print ("ENTROU LOOP")
-        print (row)
         if (row[3] == departamento):
             publicacoes_list.append(row)
 
@@ -50,6 +48,7 @@ def publicacoes_determinada_area (file_type, area):
     publicacoes_list = []
 
     for row in csv_list:
-        publicacoes_list.append(row)
+        print (row)
+        publicacoes_list.append(row[0:5])
 
     return publicacoes_list
