@@ -15,17 +15,14 @@ def publicacoes_determinada_area_por_ano (file_type, area, ano):
     csv_list = get_csv (file_type, area)
     publicacoes_list = []
     for row in csv_list:
-        # print(type(row[0]))
         if (int(row[0]) == ano):
             publicacoes_list.append(row)
 
     return publicacoes_list
 
 def publicacoes_determinada_area_por_departamento (file_type, area, departamento):
-    print ("ARQUIVO:", file_type)
     csv_list = get_csv (file_type, area)
     publicacoes_list = []
-    print ('publicacoes_determinada_area_por_departamento')
     for row in csv_list:
         if (row[3] == departamento):
             publicacoes_list.append(row)
@@ -48,7 +45,6 @@ def publicacoes_determinada_area (file_type, area):
     publicacoes_list = []
 
     for row in csv_list:
-        print (row)
         publicacoes_list.append(row[0:5])
 
     return publicacoes_list
