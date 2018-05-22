@@ -9,6 +9,8 @@ Para utilizar essa API, tenha o Python3 e pip3 instalados. Após isso, execute o
 
 Recomenda-se o uso do [virtualenv](https://virtualenv.pypa.io/en/stable/).
 
+Uma aplicação cliente para testar os endpoints pode ser acessada em http://127.0.0.1:5000/
+
 
 # Endpoints
 
