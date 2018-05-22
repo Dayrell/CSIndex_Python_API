@@ -4,7 +4,6 @@ def score_departamento (area, departamento):
     csv_list = get_csv ('scores', area)
 
     for row in csv_list:
-        print (row)
         if (row[0] == departamento):
             return [[row[1]]]
 
